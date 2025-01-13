@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Andalas | WebGIS Konsultan Pemetaan Drone</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-o9N1j4SYI5fM+7UuhOFx7s6jB3yyFYcHlIjPr6xF5ow=" crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Geo-Andalas</h1>
+        <p>WebGIS Konsultan Pemetaan Drone Profesional</p>
+    </header>
+    <div id="map"></div>
+    <footer>
+        <p>&copy; 2025 Geo-Andalas. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j4SYI5fM+7UuhOFx7s6jB3yyFYcHlIjPr6xF5ow=" crossorigin=""></script>
+    <script>
+        // Inisialisasi peta
+        var map = L.map('map').setView([-2.0, 101.5], 10); // Koordinat Kerinci, Indonesia
+
+        // Tambahkan tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Peta oleh <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Tambahkan marker lokasi layanan
+        var marker = L.marker([-2.0, 101.5]).addTo(map);
+        marker.bindPopup("<b>Geo-Andalas</b><br>Konsultan Pemetaan Drone.").openPopup();
+
+        // Tambahkan fungsi popup saat peta diklik
+        function onMapClick(e) {
+            alert("Anda mengklik koordinat " + e.latlng.toString());
+        }
+        map.on('click', onMapClick);
+    </script>
+</body>
+</html>
 # geo-andalas
